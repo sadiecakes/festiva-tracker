@@ -27,5 +27,19 @@ def list_tasks():
 # POST /tasks -- add a new task
 @app.post("/tasks")
 def create_task(task: Task):
+	# Check if a task with this ID already exists
+	for existing_task in tasks_db:
+		if existing_task.id == task.id:
+			return {"error": f"Task with id {task.id} already exists"}
 	tasks_db.append(task)
 	return {"message": "Task created", "task": task}
+
+# PUT /tasks -- update an existing task
+@app.put("/taks/{task_di}")
+def update_task(task_id: int, updated_task: Task):
+	for i, task in enumerate(tasks_db):
+		if task.id == task_id:
+			tasks_db[i] = updated_task
+			return {"message": "Task updated", "task": updated_task}
+	return {"error": "Task not found"}
+
