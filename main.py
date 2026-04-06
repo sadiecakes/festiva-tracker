@@ -35,7 +35,7 @@ def create_task(task: Task):
 	return {"message": "Task created", "task": task}
 
 # PUT /tasks -- update an existing task
-@app.put("/taks/{task_di}")
+@app.put("/tasks/{task_id}")
 def update_task(task_id: int, updated_task: Task):
 	for i, task in enumerate(tasks_db):
 		if task.id == task_id:
@@ -43,3 +43,11 @@ def update_task(task_id: int, updated_task: Task):
 			return {"message": "Task updated", "task": updated_task}
 	return {"error": "Task not found"}
 
+# DELETE /tasks -- delete an existing task by ID
+@app.delete("/tasks/{task_id}")
+def delete_task(task_id: int):
+	for i, task in enumerate(tasks_db):
+		if task.id == task_id:
+			tasks_db.pop(i)
+			return {"message": f"Task {task_id} has been deleted."}
+	return {"error": "Task not found."}
