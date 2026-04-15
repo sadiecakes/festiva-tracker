@@ -38,6 +38,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
+Visit `http://localhost:8000/` to access the app.
 Visit `http://localhost:8000/docs` to interact with the API.
 
 ## 📄 License
