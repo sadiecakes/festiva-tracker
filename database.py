@@ -17,7 +17,9 @@ class TaskDB(Base):
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, nullable=False)
     description = Column(String, default="")
-    status = Column(String, default="to do...")
-    category = Column(String, default="uncategorized...")
+    status = Column(String, default="todo")
+    category = Column(String, default="uncategorized")
+    project = Column(String, default="default")   # new
+    phase = Column(String, default="0")           # new
 
 Base.metadata.create_all(bind=engine)
